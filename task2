@@ -1,0 +1,122 @@
+import character as c
+class grade_tracker:
+    def grade_info(self):
+        self.marks=[]
+        self.names=[]
+        self.subject=int(input("how many subjects do you have? "))
+        self.grade_info=dict()
+        for i in range(self.subject):
+            sub_name=input(f"enter name of subject {i+1}: ")
+            sub_mark=float(input(f"grade in subject {i+1}: "))
+            
+            self.grade_info[sub_name]=sub_mark
+        #print(self.grade_info)
+        for i in self.grade_info.values():
+            self.marks.append(i)
+        for i in self.grade_info.keys():
+            self.names.append(i)
+        return self.marks,self.names
+    
+    def avg_grade(self,t):
+        total=0
+        count=len(t[0])
+        for i in t[0]:
+            total+=i
+        # print(total)
+        # print(count)
+        return total/count
+    
+    def overall_grade(self,a):
+        if a >= 90:
+            return 'A'
+        elif a >= 80:
+            return 'B' 
+        elif a >= 70:
+            return 'C'
+        elif a >= 60:
+            return 'D'
+        else:
+            return 'F'
+    
+    def grade_of_each_sub(self,a):
+        c=True
+        each_grade=[]
+        while c:
+            for i in a[0]:
+                if i >= 90:
+                    each_grade.append('A')
+                elif i >= 80:
+                    each_grade.append('B')
+                elif i >= 70:
+                    each_grade.append('C')
+                elif i >= 60:
+                    each_grade.append('D')
+                else:
+                    each_grade.append('F')
+            c=False
+        return each_grade        
+    
+    def assigned_value(self, a):
+        c=True
+        each_score=[]
+        while c:
+            for i in a:
+                if 'A' in i:
+                    each_score.append(4.0)
+                elif 'B' in i:
+                    each_score.append(3.0)
+                elif 'C' in i:
+                    each_score.append(2.0)
+                elif 'D' in i:
+                    each_score.append(1.0)
+                elif 'F' in i:
+                    each_score.append(0.0)
+            c=False
+        return each_score
+    
+    def gpa(self,g,t):
+        total_credit=int(input("enter total credit: "))
+        total=0
+        credits=[]
+        for i in range(len(t[0])):
+            credit=int(input(f"enter the credit of subject {t[1][i]}: "))
+            credits.append(credit)
+            g[i]*=credits[i]    
+        each_credits=g
+        for i in each_credits:
+            total+=i
+        correct_gpa=total/total_credit
+        return correct_gpa
+    
+    def cgpa(self,cgpa):
+        my_cgpa=cgpa*2.5
+        return my_cgpa
+        
+        
+if __name__=='__main__':
+    print(c.art2)
+    print("calculating gpa on a scale of 4")
+    # #creating object g for grade_tracker class
+    g=grade_tracker()
+    #print(g.grade_info())
+    # #calling the function grade_info which returns marks of each subject
+    total_marks=g.grade_info()
+    # #calling the function avg_grade which returns the average grade 
+    average_grade=g.avg_grade(total_marks)
+    # #calling the function grade_of_each_sub which returns the grade in each subject
+    over_grade=g.grade_of_each_sub(total_marks)
+    # #calling the function overall_grade that returns the overall grade 
+    total_grade=g.overall_grade(average_grade)
+    # #print(over_grade)
+    # #calling assigned_value function that returns the point of each grade
+    gpa_calc=g.assigned_value(over_grade)
+    # #print(gpa_calc)
+    # #calling gpa function which returns gpa of the student on a scale of 4.0
+    grade_pt=g.gpa(gpa_calc,total_marks)
+    # #calling cgpa function which returns the cgpa of student
+    grade_cgpa=g.cgpa(grade_pt)
+    print(f"average grade:{average_grade}")
+    print(f"overall grade:{total_grade}")
+    print(f"gpa:{grade_pt}")
+    print(f"cgpa:{grade_cgpa}")
+    print("THANK YOU FOR USING GRADE CALCULATOR.")
