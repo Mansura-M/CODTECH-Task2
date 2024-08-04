@@ -3,7 +3,7 @@
 **ID**:CT4PP4214
 **Domain**:Python Programming
 **Duration**:July 5th,2024 to August 5th,2024
-**Mentor**:
+**Mentor**:N.Santhosh Kumar
 
 ## Project Overview: Python GPA Grade Calculator
 
